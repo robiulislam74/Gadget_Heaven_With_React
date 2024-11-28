@@ -1,0 +1,33 @@
+[
+    {
+      "product_id": "1",
+      "category": "Laptops",
+      "slug": "laptops"
+    },
+    {
+      "product_id": "2",
+      "category": "MacBook",
+      "slug": "macbook"
+    },
+    {
+      "product_id": "3",
+      "category": "Phones",
+      "slug": "phones"
+    },
+    {
+      "product_id": "4",
+      "category": "Smart Watches",
+      "slug": "smart-watches"
+    },
+    {
+      "product_id": "5",
+      "category": "Accessories",
+      "slug": "accessories"
+    },
+    {
+      "product_id": "6",
+      "category": "IPhone",
+      "slug": "Iphone"
+    }
+  ]
+  
