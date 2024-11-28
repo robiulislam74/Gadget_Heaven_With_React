@@ -8,3 +8,11 @@ body{
   font-family: "Sora", sans-serif;
   background-color: #f6f6f6;
 }
+
+.dashboard .active{
+  background-color: white;
+  color: blueviolet;
+  padding: 10px 0px;
+  border-radius: 50px;
+  font-weight: 600;
+}

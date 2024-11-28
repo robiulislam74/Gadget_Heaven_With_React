@@ -5,17 +5,27 @@ import { BiSolidStarHalf } from "react-icons/bi";
 import { SlStar } from "react-icons/sl";
 import { BsCart3 } from "react-icons/bs";
 import { GiSelfLove } from "react-icons/gi";
+import { saveToLocalStr } from "../LocalStorage/LocalStorage";
 
 const ProductDetails = () => {
   const products = useLoaderData()
   const { productId } = useParams()
-  const [findOneProduct, setFindOneProduct] = useState({})
+  const [findOneProduct, setFindOneProduct] = useState([])
+  const [cart,setCart] = useState([])
   const { product_id, product_title, product_image, category, price, description, specification, rating } = findOneProduct;
 
   useEffect(() => {
     const findByProduct = [...products].find(product => product.product_id === productId)
     setFindOneProduct(findByProduct)
   }, [products, product_id])
+
+  const handleAddToCart =(product_id)=>{
+    const newCart = [...cart,product_id]
+    setCart(newCart)
+    saveToLocalStr(product_id)
+
+  }
+
   return (
     <>
     <div className="relative">
@@ -57,7 +67,7 @@ const ProductDetails = () => {
                 <button className="px-4 py-1 font-medium bg-gray-200 rounded-full border-none">{rating}</button>
               </div>
               <div className="flex items-center gap-4">
-              <button className="btn bg-bannerBg border-none text-lg font-bold text-white">Add To Card <span className="text-2xl"><BsCart3 /></span></button>
+              <button onClick={()=>handleAddToCart(product_id)} className="btn bg-bannerBg border-none text-lg font-bold text-white">Add To Card <span className="text-2xl"><BsCart3 /></span></button>
               <div className='p-3 border border-gray-500 inline-block bg-white rounded-full text-2xl'>
                 <GiSelfLove />
               </div>
