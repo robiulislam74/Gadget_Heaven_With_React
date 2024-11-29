@@ -5,7 +5,6 @@ import { FaSortAmountDown } from "react-icons/fa";
 
 const Dashboard = () => {
   const location = useLocation()
-  console.log(location.pathname)
 
   return (
     <>
@@ -24,16 +23,16 @@ const Dashboard = () => {
         </div>
       </div>
         <div className='min-h-[calc(100vh-443px)] max-w-screen-lg mx-auto'>
-          <div className='flex justify-between items-center my-8'>
+          {/* <div className='flex justify-between items-center my-8'>
             {
-              location.pathname == "/dashboard/carts"
+              location.pathname == "/dashboard/carts" || location.pathname == "/dashboard"
               ?
               <h3 className='text-2xl font-bold'>Cart</h3>
               :
               <h3 className='text-2xl font-bold'>WishList</h3>
             }
             {
-              location.pathname == "/dashboard/carts"
+              location.pathname == "/dashboard/carts" || location.pathname == "/dashboard"
               ?
             <div className='flex gap-x-4 items-center'>
               <p className='text-2xl font-bold'>Total Cost: 453</p>
@@ -43,7 +42,7 @@ const Dashboard = () => {
               :
               ""
             }
-          </div>
+          </div> */}
         <Outlet />
       </div>
       

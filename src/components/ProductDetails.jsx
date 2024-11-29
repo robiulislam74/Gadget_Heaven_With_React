@@ -1,40 +1,64 @@
-import { useLoaderData, useParams } from "react-router-dom"
+import { useLoaderData, useLocation, useParams } from "react-router-dom"
 import Heading from "./Heading"
 import { useEffect, useState } from "react"
 import { BiSolidStarHalf } from "react-icons/bi";
 import { SlStar } from "react-icons/sl";
 import { BsCart3 } from "react-icons/bs";
 import { GiSelfLove } from "react-icons/gi";
-import { saveToLocalStr } from "../LocalStorage/LocalStorage";
+import { getStoredWishList, saveToLocalStrCart, saveToLocalStrWishList } from "../LocalStorage/LocalStorage";
 
 const ProductDetails = () => {
   const products = useLoaderData()
   const { productId } = useParams()
   const [findOneProduct, setFindOneProduct] = useState([])
-  const [cart,setCart] = useState([])
+  const [cart, setCart] = useState([])
+  const [findWishId, setFindWishId] = useState(false)
   const { product_id, product_title, product_image, category, price, description, specification, rating } = findOneProduct;
+const location = useLocation()
+console.log(location.pathname)
 
   useEffect(() => {
     const findByProduct = [...products].find(product => product.product_id === productId)
     setFindOneProduct(findByProduct)
+    const getWishList = getStoredWishList()
+    for (const wishId of getWishList) {
+      if (wishId == product_id) {
+        setFindWishId(true)
+      }
+    }
   }, [products, product_id])
 
-  const handleAddToCart =(product_id)=>{
-    const newCart = [...cart,product_id]
+  const handleAddToCart = (product_id) => {
+    const newCart = [...cart, product_id]
     setCart(newCart)
-    saveToLocalStr(product_id)
+    saveToLocalStrCart(product_id)
 
   }
+  const handleAddToWishList = (product_id) => {
+    // const newWishList = [...cart,product_id]
+    // setCart(newCart)
+    saveToLocalStrWishList(product_id)
+    const getWishList = getStoredWishList()
+    for (const wishId of getWishList) {
+      if (wishId == product_id) {
+        setFindWishId(true)
+      }
+    }
+  }
+
+  // useEffect(()=>{
+    
+  // },[product_id])
 
   return (
     <>
-    <div className="relative">
-      <div className="bg-bannerBg pb-48 mb-[calc(100vh-100px)]">
-        <Heading
-          title={'Product Details'}
-          subTitle={'Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'}
-        />
-      </div>
+      <div className="relative">
+        <div className="bg-bannerBg pb-48 mb-[calc(100vh-100px)]">
+          <Heading
+            title={'Product Details'}
+            subTitle={'Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'}
+          />
+        </div>
         <div className="hero max-w-screen-2xl mx-auto rounded-2xl absolute top-36 flex justify-center">
           <div className="hero-content flex-col lg:flex-row rounded-2xl p-6 bg-white space-x-4 shadow-sm">
             <img
@@ -48,8 +72,8 @@ const ProductDetails = () => {
               <p className="text-lg font-bold">Specification:</p>
               <ul className="list-decimal ml-6 text-gray-500 text-lg my-3">
                 {
-                  specification?.map(details =>
-                    <li>{details}</li>
+                  specification?.map((details, idx) =>
+                    <li key={idx}>{details}</li>
                   )
                 }
               </ul>
@@ -67,15 +91,23 @@ const ProductDetails = () => {
                 <button className="px-4 py-1 font-medium bg-gray-200 rounded-full border-none">{rating}</button>
               </div>
               <div className="flex items-center gap-4">
-              <button onClick={()=>handleAddToCart(product_id)} className="btn bg-bannerBg border-none text-lg font-bold text-white">Add To Card <span className="text-2xl"><BsCart3 /></span></button>
-              <div className='p-3 border border-gray-500 inline-block bg-white rounded-full text-2xl'>
-                <GiSelfLove />
-              </div>
+                <button onClick={() => handleAddToCart(product_id)} className="btn bg-bannerBg border-none text-lg font-bold text-white">Add To Card <span className="text-2xl"><BsCart3 /></span></button>
+                {
+                  findWishId
+                    ?
+                    <button disabled className='p-3 cursor-pointer border border-gray-300 inline-block rounded-full text-2xl'>
+                      <GiSelfLove className="text-gray-300" />
+                    </button>
+                    :
+                    <button onClick={() => handleAddToWishList(product_id)} className='p-3 cursor-pointer border border-gray-500 inline-block rounded-full text-2xl'>
+                      <GiSelfLove />
+                    </button>
+                }
               </div>
             </div>
           </div>
         </div>
-    </div>       
+      </div>
     </>
   )
 }
