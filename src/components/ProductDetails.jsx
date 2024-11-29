@@ -5,6 +5,8 @@ import { BiSolidStarHalf } from "react-icons/bi";
 import { SlStar } from "react-icons/sl";
 import { BsCart3 } from "react-icons/bs";
 import { GiSelfLove } from "react-icons/gi";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { getStoredWishList, saveToLocalStrCart, saveToLocalStrWishList } from "../LocalStorage/LocalStorage";
 
 const ProductDetails = () => {
@@ -32,11 +34,12 @@ console.log(location.pathname)
     const newCart = [...cart, product_id]
     setCart(newCart)
     saveToLocalStrCart(product_id)
+    toast.success("Successfully added item to cart !", {
+      position: "top-center"
+    });
 
   }
   const handleAddToWishList = (product_id) => {
-    // const newWishList = [...cart,product_id]
-    // setCart(newCart)
     saveToLocalStrWishList(product_id)
     const getWishList = getStoredWishList()
     for (const wishId of getWishList) {
@@ -44,14 +47,15 @@ console.log(location.pathname)
         setFindWishId(true)
       }
     }
+    toast.success("Successfully added item to WishList !", {
+      position: "top-center"
+    });
   }
 
-  // useEffect(()=>{
-    
-  // },[product_id])
 
   return (
     <>
+    <ToastContainer/>
       <div className="relative">
         <div className="bg-bannerBg pb-48 mb-[calc(100vh-100px)]">
           <Heading

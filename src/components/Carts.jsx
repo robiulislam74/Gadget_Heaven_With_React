@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { TiDeleteOutline } from "react-icons/ti";
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 import { getStoredCart } from '../LocalStorage/LocalStorage';
 import { FaSortAmountDown } from 'react-icons/fa';
+import modalIcon from '../assets/images/Group.png'
 
 const Carts = () => {
-    // const [product,setProduct]=useState([])
-    // const productsAll = useLoaderData()
-    // console.log("allData",productsAll)
     const [productAll, setProductAll] = useState([])
     const [productSortArr, setProductSortArr] = useState(null)
+    const [tapPrice, setTapPrice] = useState('')
+    // const [productArr,setProductArr] = useState([])
     const [show, setShow] = useState(false)
+    const [condition,setCondition] = useState(false)
     const localId = getStoredCart()
 
     useEffect(() => {
@@ -23,7 +24,6 @@ const Carts = () => {
     for (const id of localId) {
         const cartData = productAll.find(card => card.product_id == id)
         productArr.push(cartData)
-
     }
 
     const handleSortByPriceBtn = () => {
@@ -34,19 +34,58 @@ const Carts = () => {
         setProductSortArr(sortProduct)
     }
 
+    const priceArr = []
+    const productPrice = productArr?.map(newProduct => {
+        priceArr.push(newProduct?.price)
+    })
+
+    let newPrice = 0
+    for (const price of priceArr) {
+        newPrice = newPrice + price
+    }
+
+    const handlePurchaseBtn = () => {
+        setCondition(true)
+        setTapPrice(newPrice)
+        setProductSortArr([])
+        document.getElementById('my_modal_5').showModal()
+        localStorage.removeItem('cart')
+    }
+
+
     return (
         <div>
             <div className='flex justify-between items-center my-8'>
                 <h3 className='text-2xl font-bold'>Cart</h3>
                 <div className='flex gap-x-4 items-center'>
-                    <p className='text-2xl font-bold'>Total Cost: 453</p>
+                    <p className='text-2xl font-bold'>Total Cost : $ {newPrice.toFixed(2)}</p>
                     <button onClick={handleSortByPriceBtn} className="btn btn-outline btn-primary rounded-full">Sort by Price <FaSortAmountDown /> </button>
-                    <button className="btn btn-outline btn-primary rounded-full">Purchase</button>
+                    <button onClick={handlePurchaseBtn} className="btn btn-outline btn-primary rounded-full">Purchase</button>
                 </div>
+                {/* Modal */}
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box text-center p-10">
+                        <img src={modalIcon} className='mx-auto' alt="" />
+                        <h3 className="font-bold text-2xl pt-3">Payment Successfully</h3>
+                        <div className="divider"></div>
+                        <div className='pt-4'>
+                        <p>Thanks for purchasing</p>
+                        <p>Total Price : ${condition?tapPrice.toFixed(2):newPrice.toFixed(2)}</p>
+                        </div>
+                        <div className="modal-action justify-center">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <NavLink to={'/'}>
+                                <button className="btn">Close</button>
+                                </NavLink>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
 
             </div>
-            {/* show?productSortArr:productArr */}
-            {/* (show && productSortArr || productArr) */}
+            {/* (condition?[]:(show ? productSortArr : productArr)) */}
             {
                 (show ? productSortArr : productArr).map((card, idx) =>
                     <div key={idx} className="flex items-center justify-between p-8 mb-6 bg-white rounded-lg shadow-md">

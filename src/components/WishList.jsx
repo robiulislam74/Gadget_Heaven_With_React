@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { getStoredWishList, saveToLocalStrCart } from '../LocalStorage/LocalStorage'
+import { toast, ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const WishList = () => {
 
@@ -21,11 +23,15 @@ const WishList = () => {
 
     const handleAddToCart = (product_id) => {
         saveToLocalStrCart(product_id)
+        toast.success("Successfully added item to cart !", {
+            position: "top-center"
+          });
     }
 
 
     return (
         <div>
+            <ToastContainer/>
             <div className='flex justify-between items-center my-8'>
                 <h3 className='text-2xl font-bold'>WishList</h3>
             </div>
