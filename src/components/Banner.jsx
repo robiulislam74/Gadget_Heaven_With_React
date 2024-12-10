@@ -6,7 +6,7 @@ const Banner = () => {
   const navigate = useNavigate()
 
   return (
-   <div className='px-7'>
+   <div className='max-w-screen-xl mx-auto hidden lg:block'>
      <div className='bg-bannerBg py-4 rounded-b-3xl'>
       <Heading
         title={'Upgrade Your Tech Accessorize with Gadget Heaven Accessories'}

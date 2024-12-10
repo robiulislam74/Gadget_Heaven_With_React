@@ -3,7 +3,7 @@ import FooterHeading from './FooterHeading'
 
 const Footer = () => {
   return (
-    <div className='mt-24'>
+    <div className='mt-24 bg-white pt-16 pb-8'>
         <FooterHeading
             title={'Gadget Heaven'}
             subTitle={'Leading the way in cutting-edge technology and innovation.'}

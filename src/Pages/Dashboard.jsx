@@ -12,7 +12,7 @@ const Dashboard = () => {
     <Helmet>
       <title>Gadget-Heaven | Dashboard</title>
     </Helmet>
-      <div className="bg-bannerBg pb-8 ">
+      <div className="bg-bannerBg pb-8 pt-4 ">
         <Heading
           title={'Dashboard'}
           subTitle={'Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'}

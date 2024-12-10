@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const [findWishId, setFindWishId] = useState(false)
   const { product_id, product_title, product_image, category, price, description, specification, rating } = findOneProduct;
 const location = useLocation()
-console.log(location.pathname)
+// console.log(location.pathname)
 
   useEffect(() => {
     const findByProduct = [...products].find(product => product.product_id === productId)
@@ -57,7 +57,7 @@ console.log(location.pathname)
     <>
     <ToastContainer/>
       <div className="relative">
-        <div className="bg-bannerBg pb-48 mb-[calc(100vh-100px)]">
+        <div className="bg-bannerBg pt-4 pb-48 mb-[calc(100vh-100px)]">
           <Heading
             title={'Product Details'}
             subTitle={'Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'}

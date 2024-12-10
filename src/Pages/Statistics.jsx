@@ -1,7 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-
+import { useLocation } from 'react-router-dom';
 import { Bar, XAxis, YAxis, Tooltip, CartesianGrid, ComposedChart, Legend, Area, Line } from 'recharts';
+import Heading from '../components/Heading';
 
 const Statistics = () => {
   const data = [
@@ -43,6 +44,12 @@ const Statistics = () => {
       <Helmet>
         <title>Gadget-Heaven | Statistics</title>
       </Helmet>
+      <div className="bg-bannerBg pb-8 pt-4 ">
+        <Heading
+          title={'Statistics'}
+          subTitle={'Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'}
+        />
+        </div>
       <div className='flex flex-col justify-center items-center mt-24'>
         <ComposedChart width={700} height={250} data={data}>
           <XAxis dataKey="name" />

@@ -8,6 +8,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import ProductDetails from "../components/ProductDetails";
 import Carts from "../components/Carts";
 import WishList from "../components/WishList";
+import Blogs from "../Pages/Blogs";
 
 
 const routes = createBrowserRouter([
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
             {
                 path: '/statistics',
                 element: <Statistics/>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs/>
             },
             {
                 path: '/dashboard',

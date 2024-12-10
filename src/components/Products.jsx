@@ -36,6 +36,13 @@ const Products = () => {
                 product={product}
                 />)
     }
+    {
+      filterProduct.length == 0 &&
+      <div className='grid col-span-3 justify-center items-center w-full h-full'>
+        <h2 className='text-3xl text-gray-300 font-bold'>Not Found !</h2>
+      </div>
+      
+    }
     {/* {
       filterProduct.map(product=> 
         <Product key={product.product_id}
