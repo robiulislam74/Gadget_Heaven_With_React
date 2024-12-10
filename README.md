@@ -5,7 +5,8 @@
 
 ## Live Site URL :
 
-### 🔗 Live Links : https://gamerchillspot-client-sites.web.app/
+### 🔗 Live Links : https://gadget-heaven-shop123.netlify.app/
+
 ## Requirement Document Link :
 
 🔗   file:///F:/Programming/React_Projects/B10-A8-gadget-heaven/Batch-10_Assignment-08.pdf
@@ -60,3 +61,4 @@ GadgetHeaven is a fully responsive e-commerce platform for buying gadgets. It fe
 
 * Displays the total price of cart items dynamically.
 
+### 🔗Website Live Links : https://gadget-heaven-shop123.netlify.app/

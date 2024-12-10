@@ -1,18 +1,22 @@
 import React from 'react'
 import Blog from '../components/Blog'
 import Heading from '../components/Heading'
+import { Helmet } from 'react-helmet-async'
 
 
 const Blogs = () => {
   return (
     <div>
+      <Helmet>
+        <title>Gadget-Heaven | Blogs</title>
+      </Helmet>
       <div className="bg-bannerBg pb-8 pt-4 ">
-      <Heading
+        <Heading
           title={"Latest New's"}
           subTitle={'Get inspired with our blogs, featuring deep dives into cutting-edge gadgets, expert advice, and everything you need to elevate your tech experience.'}
         />
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 max-w-screen-lg mx-auto">
         <Blog
           image={'https://i.ibb.co.com/n6nBz26/blog-01.jpg'}

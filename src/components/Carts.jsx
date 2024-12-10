@@ -94,10 +94,6 @@ const Carts = () => {
             {
                 (show ? productSortArr : productArr).map((card, idx) =>
                     <div key={idx} className="flex items-center justify-between p-8 mb-6 bg-white rounded-lg shadow-md">
-                        {/* Product Image */}
-                        {/* <div className='w-52 h-32 rounded-md  overflow-hidden'>
-                <img className='w-52 h-32 rounded-md' src={card?.product_image} alt="" />
-            </div> */}
                         <div className={`w-52 h-32 rounded-md bg-center bg-cover bg-no-repeat object-cover`}
                             style={{ backgroundImage: `url(${card?.product_image})` }}
                         ></div>
