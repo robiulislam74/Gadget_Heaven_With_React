@@ -2,12 +2,16 @@ import React from 'react'
 import Heading from '../components/Heading'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { FaSortAmountDown } from "react-icons/fa";
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
   const location = useLocation()
 
   return (
     <>
+    <Helmet>
+      <title>Gadget-Heaven | Dashboard</title>
+    </Helmet>
       <div className="bg-bannerBg pb-8 ">
         <Heading
           title={'Dashboard'}

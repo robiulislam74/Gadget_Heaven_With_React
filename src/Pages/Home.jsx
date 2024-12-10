@@ -2,8 +2,6 @@ import { Outlet, useLoaderData } from "react-router-dom"
 import Banner from "../components/Banner"
 import Products from "../components/Products"
 import Sidebar from "../components/Sidebar"
-import { useEffect, useState } from "react"
-import Product from "../components/Product"
 
 const Home = () => {
   const categories = useLoaderData()

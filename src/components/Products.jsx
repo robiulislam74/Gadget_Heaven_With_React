@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLoaderData, useLocation, useParams } from 'react-router-dom'
 import Product from './Product'
+import { Helmet } from 'react-helmet-async'
 
 const Products = () => {
     const products = useLoaderData()
@@ -19,6 +20,9 @@ const Products = () => {
 
   return (
     <div className='grid col-span-3 grid-cols-3 justify-between gap-6'>
+      <Helmet>
+        <title>{`Home | ${category ? category: "allProducts"}`}</title>
+      </Helmet>
     {
         location.pathname === '/allProducts'
         ?

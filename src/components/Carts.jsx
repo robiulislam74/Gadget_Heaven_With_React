@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { TiDeleteOutline } from "react-icons/ti";
-import { NavLink, useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData, useNavigate } from 'react-router-dom';
 import { getStoredCart } from '../LocalStorage/LocalStorage';
 import { FaSortAmountDown } from 'react-icons/fa';
 import modalIcon from '../assets/images/Group.png'
@@ -13,6 +13,7 @@ const Carts = () => {
     const [show, setShow] = useState(false)
     const [condition,setCondition] = useState(false)
     const localId = getStoredCart()
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch("../Products_All_Data.json")
@@ -60,7 +61,13 @@ const Carts = () => {
                 <div className='flex gap-x-4 items-center'>
                     <p className='text-2xl font-bold'>Total Cost : $ {newPrice.toFixed(2)}</p>
                     <button onClick={handleSortByPriceBtn} className="btn btn-outline btn-primary rounded-full">Sort by Price <FaSortAmountDown /> </button>
-                    <button onClick={handlePurchaseBtn} className="btn btn-outline btn-primary rounded-full">Purchase</button>
+                    {
+                        newPrice == 0
+                        ?
+                        <button disabled onClick={handlePurchaseBtn} className="btn btn-outline btn-primary rounded-full">Purchase</button>
+                        :
+                        <button onClick={handlePurchaseBtn} className="btn btn-outline btn-primary rounded-full">Purchase</button>
+                    }
                 </div>
                 {/* Modal */}
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -76,9 +83,7 @@ const Carts = () => {
                         <div className="modal-action justify-center">
                             <form method="dialog">
                                 {/* if there is a button in form, it will close the modal */}
-                                <NavLink to={'/'}>
-                                <button className="btn">Close</button>
-                                </NavLink>
+                                <button onClick={()=>navigate('/')} className="btn">Close</button>
                             </form>
                         </div>
                     </div>
